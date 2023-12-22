@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 //import ecommerce.controller.ContaController;
 import ecommerce.util.Cores;
+import ecommerce.model.Ecommerce;
+import ecommerce.model.Roupas;
+import ecommerce.model.Calcados;
 
 import java.util.InputMismatchException;
 
@@ -12,8 +15,13 @@ public class Menu {
 
 	public static void main(String[] args) {
 
-		Scanner leia = new Scanner(System.in);
+		
+		// Teste da Classe Ecommerce
+//			Ecommerce p1 = new Ecommerce("Arroz", 10.0f);
+//			p1.visualizar();
 
+				Scanner leia = new Scanner(System.in);
+		
 		int opcao, codigoProduto;
 		String nomeProduto;
 
@@ -31,9 +39,8 @@ public class Menu {
 			System.out.println("            3 - Buscar produto por código de barras  ");
 			System.out.println("            4 - Editar dados do produto              ");
 			System.out.println("            5 - Deletar produto                      ");
-			System.out.println("            6 - Retirar produto                      ");
-			System.out.println("            7 - Repor produto                        ");
-			System.out.println("            8 - Sair                                 ");
+			System.out.println("            6 - Repor produto                        ");
+			System.out.println("            7 - Sair                                 ");
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
 			System.out.println("Entre com a opção desejada:                          ");
@@ -46,7 +53,7 @@ public class Menu {
 				leia.nextLine();
 				opcao = 0;
 			}
-			if (opcao == 8) {
+			if (opcao == 7) {
 				System.out
 						.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND + "\nWesteros Store - Volte sempre!");
 				sobre();
@@ -97,16 +104,6 @@ public class Menu {
 				keyPress();
 				break;
 			case 6:
-				System.out.println(Cores.TEXT_WHITE_BOLD + "Retirar produto\n\n");
-
-				System.out.println("Digite o código de barras: ");
-				codigoProduto = leia.nextInt();
-
-				// produtos.sacar(codigoProduto);
-
-				keyPress();
-				break;
-			case 7:
 				System.out.println(Cores.TEXT_WHITE + "Repor produto\n\n");
 
 				System.out.println("Digite o código de barras: ");
