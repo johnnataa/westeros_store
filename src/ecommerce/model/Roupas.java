@@ -3,9 +3,10 @@ package ecommerce.model;
 public class Roupas extends Ecommerce {
 
 	private String tamanho;
-	public Roupas(String nome, float preco, String tamanho) {
-		super(nome, preco);
-		this.tamanho = tamanho;
+	
+	public Roupas(int numero, float preco, String nome, int codigoProduto) {
+		super(numero, preco, nome, codigoProduto);
+		
 		
 	}
 	public String getTamanho() {
