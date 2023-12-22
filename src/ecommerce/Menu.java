@@ -1,29 +1,35 @@
 package ecommerce;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //import ecommerce.controller.ContaController;
 import ecommerce.util.Cores;
-import ecommerce.model.Ecommerce;
 import ecommerce.model.Roupas;
 import ecommerce.model.Calcados;
 
-import java.util.InputMismatchException;
 
 public class Menu {
+	
+	public static Scanner leia = new Scanner(System.in);
+
 
 	public static void main(String[] args) {
 
-		
-		// Teste da Classe Ecommerce
-//			Ecommerce p1 = new Ecommerce("Arroz", 10.0f);
-//			p1.visualizar();
 
-				Scanner leia = new Scanner(System.in);
+//		Scanner leia = new Scanner(System.in);
 		
 		int opcao, codigoProduto;
 		String nomeProduto;
+		
+//		Teste Roupas
+		Roupas r1 = new Roupas("Camisa", 50.0f, "M");
+		r1.visualizar();
+		
+//		Teste Calçados
+		Calcados c1 = new Calcados("Calçado", 100.0f, 20);
+		c1.visualizar();
 
 		while (true) {
 

@@ -34,14 +34,6 @@ public abstract class Ecommerce {
 	}
 	
 	public void visualizar() {
-		System.out.println("Tamanho: ");
-		
-	}
-
-
-
-
-	{
 		System.out.println("\n\n***********************************************************");
 		System.out.println("Dados do Produto:");
 		System.out.println("***********************************************************");
