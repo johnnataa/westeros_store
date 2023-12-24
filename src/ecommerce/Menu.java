@@ -19,20 +19,18 @@ public class Menu {
 		
 		EcommerceController produtos = new EcommerceController();
 
-
-//		Scanner leia = new Scanner(System.in);
-		
-		int opcao, codigoProduto, tipo;
+		int opcao, codigoProduto, tipo, numero, tamanho;
 		float preco;
-		String nomeProduto;
+		String nomeProduto, tamanho1;
 		
-//		Teste Roupas
-//		Roupas r1 = new Roupas("Camisa", 50.0f, "M");
-//		r1.visualizar();
+//		PRODUTOS
+		Roupas r1 = new Roupas(produtos.gerarNumero(), 123, "Camisa", 50.0f, "M");
+		produtos.cadastrar(r1);
 		
-//		Teste Calçados
-//		Calcados c1 = new Calcados("Calçado", 100.0f, 20);
-//		c1.visualizar();
+		Calcados c1 = new Calcados(produtos.gerarNumero(), 321, "Tênis", 100.0f, 40);
+		produtos.cadastrar(c1);
+		
+		produtos.listarTodas();
 
 		while (true) {
 
@@ -43,13 +41,13 @@ public class Menu {
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
 			System.out.println("                                                     ");
-			System.out.println("            1 - Cadastrar produto                    ");
-			System.out.println("            2 - Listar todos os produtos             ");
-			System.out.println("            3 - Buscar produto por código de barras  ");
-			System.out.println("            4 - Editar dados do produto              ");
-			System.out.println("            5 - Deletar produto                      ");
-			System.out.println("            6 - Repor produto                        ");
-			System.out.println("            7 - Sair                                 ");
+			System.out.println("       1 - Cadastrar produto                         ");
+			System.out.println("       2 - Listar todos os produtos                  ");
+			System.out.println("       3 - Buscar produto por número                 ");
+			System.out.println("       4 - Buscar produto por código de barras       ");
+			System.out.println("       5 - Deletar produto (Por número)              ");
+			System.out.println("       6 - Deletar produto (Por código de barras)    ");
+			System.out.println("       7 - Sair                                      ");
 			System.out.println("                                                     ");
 			System.out.println("*****************************************************");
 			System.out.println("Entre com a opção desejada:                          ");
@@ -76,26 +74,30 @@ public class Menu {
 
 				System.out.println("Digite o Nome do Produto: ");
 				nomeProduto = leia.next();
-				System.out.println("Digite o Preço do Produto: ");
-				preco = leia.nextInt();
 				System.out.println("Digite o Código do Produto: ");
-				leia.skip("\\R?");
 				codigoProduto = leia.nextInt();
+				System.out.println("Digite o Preço do Produto: ");
+				leia.skip("\\R?");
+				preco = leia.nextInt();
 				//produtos.cadastrar(produtos.gerarNumero(), nomeProduto, codigoProduto);
 				do {
-					System.out.println("Digite o Tipo do produto (1-Roupas ou 2-Calçados): ");
+					System.out.println("Digite o Tipo do produto (1 - Roupas ou 2 - Calçados): ");
 					tipo = leia.nextInt();
 				} while (tipo < 1 && tipo > 2);
 
 				switch (tipo) {
 				case 1 -> {
-					produtos.cadastrar(new Roupas(produtos.gerarNumero(), preco, nomeProduto, codigoProduto));
+					System.out.println("Digite o tamanho: ");
+					tamanho1 = leia.next();
+					produtos.cadastrar(new Roupas(produtos.gerarNumero(), codigoProduto, nomeProduto, preco, tamanho1));
 				}
+				
 				case 2 -> {
-					produtos.cadastrar(new Calcados(produtos.gerarNumero(), preco, nomeProduto, codigoProduto));
+					System.out.println("Digite o tamanho: ");
+					tamanho = leia.nextInt();
+					produtos.cadastrar(new Calcados(produtos.gerarNumero(), codigoProduto, nomeProduto, preco, tamanho));
 				}
 				}
-
 
 				keyPress();
 				break;
@@ -106,41 +108,46 @@ public class Menu {
 				keyPress();
 				break;
 			case 3:
-				System.out.println(Cores.TEXT_WHITE_BOLD + "Buscar produto por código de barras\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD + "Buscar produto por número\n\n");
 
-				System.out.println("Digite o código de barras: ");
-				codigoProduto = leia.nextInt();
+				System.out.println("Digite o número do produto: ");
+				numero = leia.nextInt();
+				produtos.procurarPorNumero(numero);
 
 				keyPress();
 				break;
 			case 4:
-				System.out.println(Cores.TEXT_WHITE_BOLD + "Editar dados do produto\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD + "Buscar produto por código de barras\n\n");
 
 				System.out.println("Digite o código de barras: ");
 				codigoProduto = leia.nextInt();
+				produtos.procurarPorCodigo(codigoProduto);
 
 				keyPress();
 				break;
 			case 5:
-				System.out.println(Cores.TEXT_WHITE_BOLD + "Deletar produto\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD + "Deletar produto (Por número)\n\n");
 
-				System.out.println("Digite o código de barras: ");
-				codigoProduto = leia.nextInt();
+				System.out.println("Digite o número do produto: ");
+				numero = leia.nextInt();
 
-				// produtos.deletar(codigoProduto);
+				produtos.deletar(numero);
 
 				keyPress();
 				break;
 			case 6:
-				System.out.println(Cores.TEXT_WHITE + "Repor produto\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD + "Deletar produto (Por código de barras)\n\n");
 
 				System.out.println("Digite o código de barras: ");
 				codigoProduto = leia.nextInt();
+
+				produtos.deletar(codigoProduto);
 
 				keyPress();
 				break;
 			default:
 				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n");
+				
 				keyPress();
 				break;
 			}
@@ -148,10 +155,12 @@ public class Menu {
 	}
 
 	private static void sobre() {
-		System.out.println("\n*********************************************************");
-		System.out.println("Projeto Desenvolvido por: Johnnata Silva");
-		System.out.println("https://github.com/johnnataa/contabancaria.git");
-		System.out.println("*********************************************************");
+		System.out.println("\n*****************************************************");
+		System.out.println("                                                     ");
+		System.out.println("      Projeto Desenvolvido por: Johnnata Silva       ");		
+		System.out.println("    https://github.com/johnnataa/projeto-java.git    ");
+		System.out.println("                                                     ");
+		System.out.println("*****************************************************");
 
 	}
 

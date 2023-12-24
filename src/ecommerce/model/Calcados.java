@@ -4,8 +4,8 @@ public class Calcados extends Ecommerce{
 
 	private int tamanho;
 	
-	public Calcados(int numero, float preco, String nomeProduto, int codigoProduto) {
-		super(numero, preco, nomeProduto, codigoProduto);
+	public Calcados(int numero, int codigoProduto, String nome, float preco, int tamanho) {
+		super(numero, codigoProduto, nome, preco);
 		this.tamanho = tamanho;
 	}
 
