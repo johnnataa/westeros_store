@@ -141,7 +141,7 @@ public class Menu {
 				System.out.println("Digite o código de barras: ");
 				codigoProduto = leia.nextInt();
 
-				produtos.deletar(codigoProduto);
+				produtos.deletar1(codigoProduto);
 
 				keyPress();
 				break;
